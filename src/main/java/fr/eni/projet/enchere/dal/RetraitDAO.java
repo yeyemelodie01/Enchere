@@ -5,6 +5,6 @@ import fr.eni.projet.enchere.bo.Retrait;
 
 public interface RetraitDAO {
 
+	void addLieuRetrait(Article article);
 	Retrait findLieuRetrait(Article noArticle);
-	
 }

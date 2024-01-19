@@ -8,7 +8,7 @@ public interface UtilisateurDAO {
 	
 	void create(Utilisateur utilisateur);
 	
-	Utilisateur find(String email);
+	Utilisateur find(Integer id);
 	
 	void update(Utilisateur utilisateur);
 	

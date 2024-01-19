@@ -31,6 +31,16 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 
 	@Override
 	public void create(Utilisateur utilisateur) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		// Récupérer le mot de passe non crypté
+		String motDePasse = utilisateur.getMotDePasse();
+		System.out.println("mot de passe avant: " + motDePasse);
+		// Crypter le mot de passe avec BCryptPasswordEncoder
+		String motDePasseCrypte = passwordEncoder.encode(motDePasse);
+		System.out.println("mot de passe après: " + motDePasseCrypte);
+		// Mettre à jour l'objet Utilisateur avec le mot de passe crypté
+		utilisateur.setMotDePasse("{bcrypt}" + motDePasseCrypte);
+
 		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
 		String sql = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, role)"
@@ -45,12 +55,11 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur find(String email) {
-		System.out.println("vous etes dans find(string email)");
-		String sql = "SELECT * FROM UTILISATEURS WHERE email = :email";
-		
+	public Utilisateur find(Integer id) {
+		String sql = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = :noUtilisateur";
+		System.out.println("vous etes dans find: " + id);
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
-		namedParameters.addValue("email", email);
+		namedParameters.addValue("noUtilisateur", id);
 		
 		Utilisateur utilisateur = null;
 		try {

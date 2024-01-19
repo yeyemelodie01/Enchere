@@ -11,7 +11,7 @@ public interface ArticleDAO {
 
     List<Article> findAll();
 
-    void update(Integer Utilisateur, Article article);
+    void update(Article article);
 
     void delete(Integer noArticle);
 

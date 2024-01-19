@@ -24,8 +24,8 @@ public class UtilisateurService implements IntUtilisateurService {
 	}
 
 	@Override
-	public Utilisateur findUtilisateur(String email) {
-		return this.utilisateurDAO.find(email);
+	public Utilisateur findUtilisateur(Integer id) {
+		return this.utilisateurDAO.find(id);
 	}
 
 	@Override

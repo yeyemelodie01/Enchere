@@ -32,6 +32,9 @@ public class TestCategorie {
     @Autowired
     ArticleDAO articleDAO;
 
+    @Autowired
+    RetraitDAO retraitDAO;
+
 
     /* Test UTILISATEURDAO */
     /*@Test
@@ -74,11 +77,12 @@ public class TestCategorie {
         utilisateurDAO.update(u);
     }*/
 
-    /* TEST ARTICLEDAO */
 
+    /* TEST ARTICLEDAO */
     @Test
+    @Transactional
     void test02_CreateArticle() {
-        Utilisateur utilisateur = utilisateurDAO.find("mel@gmail.com");
+        Utilisateur utilisateur = utilisateurDAO.find(1);
         Categorie categorie = this.categorieDAO.find(1);
         System.out.println(utilisateur);
         LocalDate dateNow = LocalDate.now();
@@ -87,4 +91,87 @@ public class TestCategorie {
         this.articleDAO.create(article);
         assertNotNull(article.getCategorieArticle());
     }
+    @Test
+    @Transactional
+    void findTest() {
+        this.articleDAO.read(5);
+        System.out.println("Trouver l'article avec son id: " + this.articleDAO.read(5));
+    }
+
+    @Test
+    @Transactional
+    void findAllTest() {
+        this.articleDAO.findAll();
+        System.out.println("Trouver tous les articles: " + this.articleDAO.findAll());
+    }
+
+    @Test
+    @Transactional
+    void updateTest() {
+        Utilisateur utilisateur = utilisateurDAO.find("mel@gmail.com");
+        Categorie categorie = this.categorieDAO.find(1);
+        System.out.println(utilisateur);
+        LocalDate dateNow = LocalDate.now();
+        LocalDate dateEnd = LocalDate.now().plusDays(7);
+        Article newArticle = new Article("Radio","Ancienne radio, en bon état ", dateNow, dateEnd,210, 340,utilisateur,categorie);
+        this.articleDAO.update(newArticle);
+        System.out.println("Modification de l'article: " + newArticle.getDescription());
+    }
+
+    @Test
+    @Transactional
+    void deleteTest() {
+        this.articleDAO.delete(5);
+    }
+
+
+    /* TEST CATEGORIEDAO *//*
+    @Test
+    @Transactional
+    void findTest() {
+        this.categorieDAO.find(6);
+        System.out.println("Trouver la catégorie avec son id: " + this.categorieDAO.find(6));
+    }
+
+    @Test
+    @Transactional
+    void findAllTest() {
+        this.categorieDAO.findAll();
+        System.out.println("Trouver toutes les catégories: " + this.categorieDAO.findAll());
+    }*/
+
+
+    /* TEST RETRAITDAO */
+    /*@Test
+    @Transactional
+    void addTest() {
+        Article article = this.articleDAO.read(2);
+        System.out.println(article.getUtilisateur().getNoUtilisateur());
+        this.retraitDAO.addLieuRetrait(article);
+    }
+
+    @Test
+    @Transactional
+    void findTest() {
+        Article article = this.articleDAO.read(2);
+        this.retraitDAO.findLieuRetrait(article);
+        System.out.println("Trouver le lieu de retrait avec un article: " +  this.retraitDAO.findLieuRetrait(article));
+    }*/
+
+    /* TEST ENCHEREDAO */
+    /*@Test
+    @Transactional
+    void addTest() {
+        Article article = this.articleDAO.read(5);
+        System.out.println(article.getUtilisateur());
+        System.out.println(article);
+        this.retraitDAO.addLieuRetrait(article);
+    }
+
+    @Test
+    @Transactional
+    void findTest() {
+        this.categorieDAO.find(6);
+        System.out.println("Trouver la catégorie avec son id: " + this.categorieDAO.find(6));
+    }*/
 }

@@ -47,6 +47,18 @@ public class Article {
         this.categorieArticle = categorieArticle;
     }
 
+    public Article(Integer noArticle, String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, Utilisateur utilisateur, Categorie categorieArticle) {
+        this.noArticle = noArticle;
+        this.nomArticle = nomArticle;
+        this.description = description;
+        this.dateDebutEncheres = dateDebutEncheres;
+        this.dateFinEncheres = dateFinEncheres;
+        this.miseAPrix = miseAPrix;
+        this.prixVente = prixVente;
+        this.utilisateur = utilisateur;
+        this.categorieArticle = categorieArticle;
+    }
+
     public Article(String nomArticle, String description, LocalDate dateDebutEncheres, LocalDate dateFinEncheres, Integer miseAPrix, Integer prixVente, String etatVente, Utilisateur utilisateur, Categorie categorieArticle, Retrait lieuRetrait, Enchere enchere) {
         this.nomArticle = nomArticle;
         this.description = description;

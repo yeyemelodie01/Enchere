@@ -8,6 +8,6 @@ public interface IntUtilisateurService {
 	
 	List<Utilisateur> getUtilisateurs();
 	
-	Utilisateur findUtilisateur(String email);
+	Utilisateur findUtilisateur(Integer id);
 	void create(Utilisateur utilisateur);
 }
