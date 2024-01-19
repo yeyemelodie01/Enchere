@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+content=~{:: main},
+resource=~{:: #ressource-css})
+}">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="/static/css/inscription.css">
+    <th:block id="ressource-css">
+        <link rel="stylesheet" data-th-href="@{/css/style.css}">
+    </th:block>
+    <title>S'inscrire</title>
+</head>
+<body>
+    <main>
+        <div class="container">
+            <h2>Inscription</h2>
+            <form class="registration-form" data-th-action="@{/signin}" data-th-object="${utilisateur}" method="post">
+                <ul>
+                    <li>
+                        <label for="pseudo"> Pseudo: </label>
+                        <input type="text" id="pseudo" name="pseudo" required placeholder="Votre pseudo" data-th-field="*{pseudo}">
+                    </li>
+                    <li>
+                        <label for="lastName"> Nom: </label>
+                        <input type="text" id="lastName" name="lastName" required placeholder="Votre nom" data-th-field="*{nom}">
+                    </li>
+                    <li>
+                        <label for="firstName"> Prénom: </label>
+                        <input type="text" id="firstName" name="firstName" required placeholder="Votre prénom" data-th-field="*{prenom}">
+                    </li>
+                    <li>
+                        <label for="email"> Email: </label>
+                        <input type="email" id="email" name="email" required placeholder="Votre email user@mail.com" data-th-field="*{email}">
+                    </li>
+                    <li>
+                        <label for="phoneNumber"> Numéro de tél.: </label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Votre numéro de téléphone" data-th-field="*{telephone}">
+                    </li>
+                    <li>
+                        <label for="libelleRue"> Libellé rue: </label>
+                        <input type="text" id="libelleRue" name="libelleRue" data-th-field="*{rue}">
+                    </li>
+                    <li>
+                        <label for="codePostal"> Code postal: </label>
+                        <input type="text" id="codePostal" name="codePostal" data-th-field="*{codePostal}">
+                    </li>
+                    <li>
+                        <label for="ville"> Ville: </label>
+                        <input type="text" id="ville" name="ville" data-th-field="*{ville}">
+                    </li>
+                    <li>
+                        <label for="password"> Saisir un mot de passe: </label>
+                        <input type="password" id="password" name="password" required data-th-field="*{motDePasse}">
+                    </li>
+                    <li>
+                        <label for="passwordConfirm"> Confirmer le mot de passe: </label>
+                        <input type="password" id="passwordConfirm" name="passwordConfirm" required>
+                    </li>
+                    <li>
+                        <div class="button-area">
+                            <button type="submit">S'inscrire</button>
+                            <button type="reset">Annuler</button>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

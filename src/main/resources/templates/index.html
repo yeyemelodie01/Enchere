@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{layout/layout :: frag-layout(
+                                        title=~{:: title},
+                                        content=~{:: .center-main},
+                                        resource=~{:: #ressource-css})}">
+<head>
+    <title>ENI-Enchères</title>
+	<th:block id="ressource-css">
+		<link rel="stylesheet" data-th-href="@{/css/style.css}" />
+	</th:block>
+</head>
+<body>
+    <main class="center-main">
+    <h1 style="text-align:center;">Liste des enchères</h1>
+        <section>
+            <div>
+	            <p>Filtres :</p>
+	            <input type="search" id="site-search" name="recherche" placeholder="Le nom de l'article contient"/>
+	            <br>
+	            <label for="categorie">Catégorie :</label>	           
+	            <select id="categorie">
+	            	<option>Toutes</option>
+	            	<option>Informatique</option>
+	            	<option>Ameublement</option>
+	            	<option>Vêtement</option>
+	            	<option>Sport & Loisir</option>
+	            </select>
+				<button class="button is-success" type="submit">Rechercher</button>
+            </div>
+        </section>
+        <section>
+        	<div class="articlesVendus">
+        		<figure class="figures">
+   					<img th:src="@{images/square01.png}" alt="square">
+        			<figcaption>
+        				<h3>Un exemple à vendre</h3>
+        				<p>Ici seront les div dynamiques de tous les articles en vente.</p>
+        			</figcaption>
+        		</figure>
+        	</div>
+        </section>
+    </main>
+</body>
+</html>

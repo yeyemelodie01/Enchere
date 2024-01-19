@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+														content=~{:: .center-main},
+														resource=~{:: #ressource-css})
+										}">
+<head>
+<title>ENI-Enchères</title>
+<th:block id="ressource-css">
+	<link rel="stylesheet" data-th-href="@{/css/login-form.css}">
+	<link rel="stylesheet" data-th-href="@{/css/general.css}" />
+</th:block>
+</head>
+<body>
+	<main class="center-main">
+	<div class="grid-container">
+		<form data-th-action="@{/login}" method="post">
+			<ul class="item1">
+				<li>
+					<label for="inputUser">Identifiant :</label>
+					<input id="inputUser" type="text" name="username" />
+				</li>
+				<li>
+					<label for="inputPwd">Mot de passe :</label>
+					<input id="inputPwd" type="password" name="password" />
+				</li>
+			</ul>
+			<button class="btn item2" type="submit">Connexion</button>
+			<div class="item3" style="display: none;">
+				<input type="checkbox" id="souvenir" name="souvenir"/>
+				<label for="souvenir">Se souvenir de moi</label>
+				<a href="">Mot de passe oublié</a>
+			</div>
+		</form>
+		<a th:href="@{/signin}">Créer un compte</a>
+	</div>
+	</main>	
+</body>
+</html>

@@ -1,0 +1,13 @@
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header">
+  <h1 id="nav-title"><a th:href="@{/encheres}">ENI-Encheres</a></h1>
+  <nav class="nav">
+    <ul>
+      <li th:if="${!#authorization.expression('isAuthenticated()')}"> <!--Affiche le lien connexion si je ne suis pas connecter-->
+        <a th:href="@{/login}">Connexion - S'inscrire</a>
+      </li>
+      <li th:if="${#authorization.expression('isAuthenticated()')}"> <!--Affiche le lien deconnexion si je suis connecter-->
+        <a th:href="@{/logout}">Déconnexion</a>
+      </li>
+    </ul>
+  </nav>
+</header>
