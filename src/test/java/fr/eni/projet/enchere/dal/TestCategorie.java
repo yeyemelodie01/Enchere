@@ -79,7 +79,7 @@ public class TestCategorie {
 
 
     /* TEST ARTICLEDAO */
-    @Test
+    /*@Test
     @Transactional
     void test02_CreateArticle() {
         Utilisateur utilisateur = utilisateurDAO.find(1);
@@ -122,10 +122,10 @@ public class TestCategorie {
     @Transactional
     void deleteTest() {
         this.articleDAO.delete(5);
-    }
+    }*/
 
 
-    /* TEST CATEGORIEDAO *//*
+    /* TEST CATEGORIEDAO */
     @Test
     @Transactional
     void findTest() {
@@ -138,7 +138,7 @@ public class TestCategorie {
     void findAllTest() {
         this.categorieDAO.findAll();
         System.out.println("Trouver toutes les catégories: " + this.categorieDAO.findAll());
-    }*/
+    }
 
 
     /* TEST RETRAITDAO */

@@ -13,6 +13,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
+
 @Configuration
 public class ENISecuriteConfig {
 
@@ -26,7 +27,6 @@ public class ENISecuriteConfig {
         jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("SELECT pseudo, role FROM UTILISATEURS WHERE pseudo = ?");
         return jdbcUserDetailsManager;
     }
-
     /* Restriction des URLs selon la connexion utilisateur */
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -34,10 +34,10 @@ public class ENISecuriteConfig {
             // Permet à l'employe d'accéder à la liste des formateurs
             //Alternative dans le cas ou un seul role est spécifié pour un utilisateur
             // auth.requestMatchers(HttpMethod.GET,"/formateurs").hasRole("EMPLOYE", "FORMATEUR","ADMIN")
-            /*auth.requestMatchers(HttpMethod.GET,"/formateurs").hasRole("EMPLOYE")
+            auth.requestMatchers(HttpMethod.GET,"/encheres/profile/*").hasRole("UTILISATEUR");
 
                     //Permet au formateur de manipuler les détails
-                    .requestMatchers(HttpMethod.GET,"/formateurs/detail").hasRole("FORMATEUR")
+                    /*.requestMatchers(HttpMethod.GET,"/formateurs/detail").hasRole("FORMATEUR")
                     .requestMatchers(HttpMethod.POST,"/formateurs/detailPost").hasRole("FORMATEUR")
 
                     //Permet aux Admin de creer un formateur

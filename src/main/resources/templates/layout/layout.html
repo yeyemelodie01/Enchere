@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:fragment="frag-layout(title, content, resource)">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:fragment="frag-layout(title, nav, content, resource)">
 <!-- th:fragment => on donne un nom au doc. On lui ajoute un ou des paramètre(s) ici title, content et resource  -->
 <head>
     <meta charset="UTF-8">
     <title th:replace="${title}"></title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <th:block th:replace="${resource} ?: ~{}"></th:block>
     <!-- Ici on remplace resource par l'élément renvoyé par le fichier qui appelera ce paramètre -->
 </head>
 <body>
-    <div th:replace="~{fragments/fragment-header :: frag-header}"></div> <!-- code qui permet récupérer notre frag-header qui contient le header -->
+    <header th:replace="${nav}"></header><!-- code qui permet récupérer notre frag-header qui contient le header -->
 
     <main th:replace="${content}"></main> <!-- on appelle le paramètre content -->
 

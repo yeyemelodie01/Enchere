@@ -83,7 +83,7 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 
 	@Override
 	public List<Utilisateur> findAll() {
-		String sql = "SELECT pseudo, nom, prenom, email, rue, code_postal, ville, FROM UTILISATEURS;";
+		String sql = "SELECT no_utilisateur,pseudo, nom, prenom, email, rue, code_postal, ville FROM UTILISATEURS;";
 		List<Utilisateur> utilisateurs = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Utilisateur.class));
 		
 		return utilisateurs;

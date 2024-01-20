@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 		data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+														nav=~{:: header},
 														content=~{:: .center-main},
 														resource=~{:: #ressource-css})
 										}">
@@ -12,6 +13,32 @@
 </th:block>
 </head>
 <body>
+	<header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<h1 id="navbar-item"><a th:href="@{/encheres}">ENI-Encheres</a></h1>
+				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+					<span aria-hidden="true"></span>
+				</a>
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item">
+					<div class="buttons">
+						<a th:if="${#authorization.expression('isAuthenticated()')}" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
+					</div>
+					<div class="buttons" th:if="${!#authorization.expression('isAuthenticated()')}">
+						<a th:href="@{/login}">Connexion - S'inscrire</a>
+					</div>
+					<div class="buttons" th:if="${#authorization.expression('isAuthenticated()')}">
+						<a th:href="@{/logout}">Déconnexion</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</nav>
+	</header>
 	<main class="center-main">
 	<div class="grid-container">
 		<form data-th-action="@{/login}" method="post">

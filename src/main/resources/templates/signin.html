@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
-content=~{:: main},
-resource=~{:: #ressource-css})
-}">
+                                                                                                    nav=~{:: header},
+                                                                                                    content=~{:: main},
+                                                                                                    resource=~{:: #ressource-css})
+                                                                                                    }">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -13,6 +14,33 @@ resource=~{:: #ressource-css})
     <title>S'inscrire</title>
 </head>
 <body>
+    <header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header">
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <h1 id="navbar-item"><a th:href="@{/encheres}">ENI-Encheres</a></h1>
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a th:if="${#authorization.expression('isAuthenticated()')}" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
+                    </div>
+                    <div class="buttons" th:if="${!#authorization.expression('isAuthenticated()')}">
+                        <a th:href="@{/login}">Connexion - S'inscrire</a>
+                    </div>
+                    <div class="buttons" th:if="${#authorization.expression('isAuthenticated()')}">
+                        <a th:href="@{/logout}">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </nav>
+    </header>
+
     <main>
         <div class="container">
             <h2>Inscription</h2>
