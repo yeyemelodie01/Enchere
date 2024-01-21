@@ -2,65 +2,73 @@
 <html xmlns:th="http://www.thymeleaf.org"
 		data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
 														nav=~{:: header},
-														content=~{:: .center-main},
+														content=~{:: main},
 														resource=~{:: #ressource-css})
 										}">
 <head>
-<title>ENI-Enchères</title>
-<th:block id="ressource-css">
-	<link rel="stylesheet" data-th-href="@{/css/login-form.css}">
-	<link rel="stylesheet" data-th-href="@{/css/general.css}" />
-</th:block>
+	<title>ENI-Enchères</title>
+	<th:block id="ressource-css">
+		<link rel="stylesheet" data-th-href="@{/css/general.css}" />
+	</th:block>
 </head>
 <body>
-	<header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header">
+	<header>
 		<nav class="navbar" role="navigation" aria-label="main navigation">
 			<div class="navbar-brand">
-				<h1 id="navbar-item"><a th:href="@{/encheres}">ENI-Encheres</a></h1>
-				<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-					<span aria-hidden="true"></span>
-				</a>
+				<div class="navbar-item">
+					<a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
+				</div>
 			</div>
 			<div class="navbar-end">
-				<div class="navbar-item">
+				<div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
 					<div class="buttons">
-						<a th:if="${#authorization.expression('isAuthenticated()')}" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
+						<a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
 					</div>
-					<div class="buttons" th:if="${!#authorization.expression('isAuthenticated()')}">
-						<a th:href="@{/login}">Connexion - S'inscrire</a>
+				</div>
+				<div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
+					<div class="buttons">
+						<a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
 					</div>
-					<div class="buttons" th:if="${#authorization.expression('isAuthenticated()')}">
-						<a th:href="@{/logout}">Déconnexion</a>
+				</div>
+				<div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+					<div class="buttons">
+						<a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
 					</div>
 				</div>
 			</div>
-			</div>
 		</nav>
 	</header>
-	<main class="center-main">
-	<div class="grid-container">
-		<form data-th-action="@{/login}" method="post">
-			<ul class="item1">
-				<li>
-					<label for="inputUser">Identifiant :</label>
-					<input id="inputUser" type="text" name="username" />
-				</li>
-				<li>
-					<label for="inputPwd">Mot de passe :</label>
-					<input id="inputPwd" type="password" name="password" />
-				</li>
-			</ul>
-			<button class="btn item2" type="submit">Connexion</button>
-			<div class="item3" style="display: none;">
-				<input type="checkbox" id="souvenir" name="souvenir"/>
-				<label for="souvenir">Se souvenir de moi</label>
-				<a href="">Mot de passe oublié</a>
+
+	<main class="is-flex is-flex-direction-column is-justify-content-center">
+		<h1 class="title is-2 has-text-centered">Se connecter</h1>
+		<form th:action="@{/login}" method="post">
+			<div class="field mb-5">
+				<label class="label" for="inputUser">Identifiant :</label>
+				<div class="control has-icons-left">
+					<input class="input" id="inputUser" name="username" type="text" placeholder="Votre pseudo">
+					<span class="icon is-small is-left">
+				  <i class="fas fa-user"></i>
+				</span>
+				</div>
+			</div>
+			<div class="field">
+				<label class="label" for="inputPwd">Mot de passe :</label>
+				<div class="control has-icons-left">
+					<input class="input" id="inputPwd" name="password" type="password" placeholder="Votre mot de passe">
+					<span class="icon is-small is-left">
+				 <i class="fa-solid fa-lock"></i>
+				</span>
+				</div>
+			</div>
+			<div class="is-grouped is-flex is-justify-content-center">
+				<div class="control">
+					<button class="button has-background-link has-text-white has-text-weight-semibold" type="submit">Se connecter</button>
+				</div>
+				<div class="control">
+					<a data-th-href="@{/signin}" class="button has-background-link has-text-white ml-3 has-text-weight-semibold">Créer un compte</a>
+				</div>
 			</div>
 		</form>
-		<a th:href="@{/signin}">Créer un compte</a>
-	</div>
 	</main>	
 </body>
 </html>

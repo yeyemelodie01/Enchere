@@ -1,49 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
-                                                                                                    nav=~{:: header},
-                                                                                                    content=~{:: main},
-                                                                                                    resource=~{:: #ressource-css})
-                                                                                                    }">
+<html xmlns:th="http://www.thymeleaf.org"
+      lang="fr"
+      data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+                                                                        nav=~{:: header},
+                                                                        content=~{:: main},
+                                                                        resource=~{:: #ressource-css})
+                                                                        }">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="stylesheet" href="/static/css/inscription.css">
+    <title>S'inscrire</title>
+
     <th:block id="ressource-css">
         <link rel="stylesheet" data-th-href="@{/css/style.css}">
     </th:block>
-    <title>S'inscrire</title>
 </head>
 <body>
-    <header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header">
+    <header>
         <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-                <h1 id="navbar-item"><a th:href="@{/encheres}">ENI-Encheres</a></h1>
-                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
-            </div>
-            <div class="navbar-end">
                 <div class="navbar-item">
-                    <div class="buttons">
-                        <a th:if="${#authorization.expression('isAuthenticated()')}" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
-                    </div>
-                    <div class="buttons" th:if="${!#authorization.expression('isAuthenticated()')}">
-                        <a th:href="@{/login}">Connexion - S'inscrire</a>
-                    </div>
-                    <div class="buttons" th:if="${#authorization.expression('isAuthenticated()')}">
-                        <a th:href="@{/logout}">Déconnexion</a>
-                    </div>
+                    <a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
                 </div>
             </div>
+            <div class="navbar-end">
+                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
+                    </div>
+                </div>
+                <div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
+                    </div>
+                </div>
+                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
+                    </div>
+                </div>
             </div>
         </nav>
     </header>
 
     <main>
         <div class="container">
-            <h2>Inscription</h2>
+            <h1 class="title is-2 has-text-centered">Inscription</h1>
             <form class="registration-form" data-th-action="@{/signin}" data-th-object="${utilisateur}" method="post">
                 <ul>
                     <li>

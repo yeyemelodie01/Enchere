@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title th:replace="${title}"></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <th:block th:replace="${resource} ?: ~{}"></th:block>
     <!-- Ici on remplace resource par l'élément renvoyé par le fichier qui appelera ce paramètre -->
 </head>
