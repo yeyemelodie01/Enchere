@@ -2,6 +2,7 @@ package fr.eni.projet.enchere.dal;
 
 import fr.eni.projet.enchere.bo.Article;
 import fr.eni.projet.enchere.bo.Categorie;
+import fr.eni.projet.enchere.bo.Enchere;
 import fr.eni.projet.enchere.bo.Utilisateur;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -34,6 +35,9 @@ public class TestCategorie {
 
     @Autowired
     RetraitDAO retraitDAO;
+
+    @Autowired
+    EnchereDAO enchereDAO;
 
 
     /* Test UTILISATEURDAO */
@@ -90,15 +94,15 @@ public class TestCategorie {
        Article article = new Article("Television","c'est une grand télé", dateNow, dateEnd,210, 340,utilisateur,categorie);
         this.articleDAO.create(article);
         assertNotNull(article.getCategorieArticle());
-    }
-    @Test
+    }*/
+   /*  @Test
     @Transactional
     void findTest() {
-        this.articleDAO.read(5);
-        System.out.println("Trouver l'article avec son id: " + this.articleDAO.read(5));
+        this.articleDAO.read(2);
+        System.out.println("Trouver l'article avec son id: " + this.articleDAO.read(2));
     }
 
-    @Test
+   @Test
     @Transactional
     void findAllTest() {
         this.articleDAO.findAll();
@@ -126,7 +130,7 @@ public class TestCategorie {
 
 
     /* TEST CATEGORIEDAO */
-    @Test
+   /* @Test
     @Transactional
     void findTest() {
         this.categorieDAO.find(6);
@@ -138,7 +142,7 @@ public class TestCategorie {
     void findAllTest() {
         this.categorieDAO.findAll();
         System.out.println("Trouver toutes les catégories: " + this.categorieDAO.findAll());
-    }
+    }*/
 
 
     /* TEST RETRAITDAO */
@@ -159,19 +163,27 @@ public class TestCategorie {
     }*/
 
     /* TEST ENCHEREDAO */
-    /*@Test
-    @Transactional
+    @Test
+
     void addTest() {
-        Article article = this.articleDAO.read(5);
+        Article article = this.articleDAO.read(2);
         System.out.println(article.getUtilisateur());
         System.out.println(article);
-        this.retraitDAO.addLieuRetrait(article);
+        this.enchereDAO.add(article);
     }
 
     @Test
     @Transactional
     void findTest() {
-        this.categorieDAO.find(6);
-        System.out.println("Trouver la catégorie avec son id: " + this.categorieDAO.find(6));
-    }*/
+        Article article = this.articleDAO.read(2);
+        this.enchereDAO.find(article);
+        System.out.println("Trouver les encheres avec son article: " + this.enchereDAO.find(article));
+    }
+
+    @Test
+    @Transactional
+    void findAllTest() {
+        this.enchereDAO.findAll();
+        System.out.println("Trouver toutes les encheres: " + this.enchereDAO.findAll());
+    }
 }

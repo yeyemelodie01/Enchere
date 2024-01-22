@@ -11,21 +11,25 @@ import fr.eni.projet.enchere.dal.UtilisateurDAO;
 @Service
 public class UtilisateurService implements IntUtilisateurService {
 
+	// Lien vers l'interface de la DAL
 	private UtilisateurDAO utilisateurDAO;
 
+
+	// Constructeur IoC
 	public UtilisateurService(UtilisateurDAO utilisateurDAO) {
 		super();
 		this.utilisateurDAO = utilisateurDAO;
 	}
 
+	// METHODES CRUD
 	@Override
-	public List<Utilisateur> getUtilisateurs() {
+	public List<Utilisateur> findAll() {
 		return this.utilisateurDAO.findAll();
 	}
 
 	@Override
-	public Utilisateur findUtilisateur(Integer id) {
-		return this.utilisateurDAO.find(id);
+	public Utilisateur findById(Integer id) {
+		return this.utilisateurDAO.findById(id);
 	}
 
 	@Override
@@ -33,4 +37,11 @@ public class UtilisateurService implements IntUtilisateurService {
 		utilisateurDAO.create(utilisateur);
 	}
 
+	public void update(Utilisateur utilisateur) {
+		utilisateurDAO.update(utilisateur);
+	}
+
+	public void delete(Integer noUtilisateur) { utilisateurDAO.delete(noUtilisateur);
+
+	}
 }

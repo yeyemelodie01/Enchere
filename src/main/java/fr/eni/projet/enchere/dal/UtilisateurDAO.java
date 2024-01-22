@@ -14,7 +14,7 @@ public interface UtilisateurDAO {
 	
 	List<Utilisateur> findAll();
 	
-	void supprimerUtilisateur(Integer noUtilisateur);
+	void delete(Integer noUtilisateur);
 	
 
 }

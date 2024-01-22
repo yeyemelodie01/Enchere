@@ -7,12 +7,12 @@ import fr.eni.projet.enchere.dal.ArticleDAO;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -48,7 +48,7 @@ public class ArticleDAOSQL implements ArticleDAO {
     }
 
     @Override
-    public int create(Article article) {
+    public Integer create(Article article) {
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         String sql = "INSERT INTO ARTICLES_VENDUS (nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie) "
@@ -73,20 +73,26 @@ public class ArticleDAOSQL implements ArticleDAO {
     }
 
     @Override
-    public Article read(Integer idArticle) {
+    public Article find(Integer idArticle) {
         String sql = "SELECT * FROM ARTICLES_VENDUS" +
                 " INNER JOIN UTILISATEURS ON ARTICLES_VENDUS.no_utilisateur = UTILISATEURS.no_utilisateur " +
                 "INNER JOIN CATEGORIES ON ARTICLES_VENDUS.no_categorie = CATEGORIES.no_categorie WHERE no_article = :noArticle;";
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("noArticle", idArticle);
-        System.out.println(this.namedParameterJdbcTemplate.queryForObject(sql, namedParameters, new BeanPropertyRowMapper<>(Article.class)));
+
         return this.namedParameterJdbcTemplate.queryForObject(
                 sql,
                 namedParameters,
                 (resultSet, rowNum) -> {
                     Article article = new Article();
                     article.setNoArticle(resultSet.getInt("no_article"));
-                    // ... autres propriétés
+                    article.setNomArticle(resultSet.getString("nom_article"));
+                    article.setDescription(resultSet.getString("description"));
+                    article.setDateDebutEncheres(LocalDate.parse(resultSet.getString("date_debut_encheres")));
+                    article.setDateFinEncheres(LocalDate.parse(resultSet.getString("date_fin_encheres")));
+                    article.setMiseAPrix(resultSet.getInt("prix_initial"));
+                    article.setPrixVente(resultSet.getInt("prix_vente"));
+
 
                     // Charger l'utilisateur
                     Utilisateur utilisateur = new Utilisateur();

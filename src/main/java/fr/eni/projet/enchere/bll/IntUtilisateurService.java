@@ -6,8 +6,13 @@ import fr.eni.projet.enchere.bo.Utilisateur;
 
 public interface IntUtilisateurService {
 	
-	List<Utilisateur> getUtilisateurs();
+	List<Utilisateur> findAll();
 	
-	Utilisateur findUtilisateur(Integer id);
-	void create(Utilisateur utilisateur);
+    Utilisateur findById(Integer id);
+
+    void create(Utilisateur utilisateur);
+
+    void update(Utilisateur utilisateur);
+
+    void delete(Integer noUtilisateur);
 }

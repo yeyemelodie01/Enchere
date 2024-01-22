@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:fragment="frag-layout(title, nav, content, resource)">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:fragment="frag-layout(title, content, resource)">
 <!-- th:fragment => on donne un nom au doc. On lui ajoute un ou des paramètre(s) ici title, content et resource  -->
 <head>
     <meta charset="UTF-8">
@@ -10,8 +10,6 @@
     <!-- Ici on remplace resource par l'élément renvoyé par le fichier qui appelera ce paramètre -->
 </head>
 <body>
-    <header th:replace="${nav}"></header><!-- code qui permet récupérer notre frag-header qui contient le header -->
-
     <main th:replace="${content}"></main> <!-- on appelle le paramètre content -->
 
     <div th:replace="~{fragments/fragment-footer :: frag-footer}"></div> <!-- code qui permet récupérer notre frag-footer qui contient le footer -->
