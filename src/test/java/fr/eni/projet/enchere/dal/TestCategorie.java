@@ -67,12 +67,12 @@ public class TestCategorie {
         assertNotNull(utilisateur.getTelephone());
     }*/
 
-    /*@Test
+    @Test
     @Transactional
     void findTest() {
-        utilisateurDAO.find("mel@gmail.com");
-        System.out.println(utilisateurDAO.find("mel@gmail.com").getNoUtilisateur());
-    }*/
+        utilisateurDAO.findAll();
+        System.out.println(utilisateurDAO.findAll());
+    }
 
     /*@Test
     @Transactional
@@ -149,7 +149,7 @@ public class TestCategorie {
     /*@Test
     @Transactional
     void addTest() {
-        Article article = this.articleDAO.read(2);
+        Article article = this.articleDAO.find(1);
         System.out.println(article.getUtilisateur().getNoUtilisateur());
         this.retraitDAO.addLieuRetrait(article);
     }
@@ -163,10 +163,9 @@ public class TestCategorie {
     }*/
 
     /* TEST ENCHEREDAO */
-    @Test
-
+    /*@Test
     void addTest() {
-        Article article = this.articleDAO.read(2);
+        Article article = this.articleDAO.find(1);
         System.out.println(article.getUtilisateur());
         System.out.println(article);
         this.enchereDAO.add(article);
@@ -175,7 +174,7 @@ public class TestCategorie {
     @Test
     @Transactional
     void findTest() {
-        Article article = this.articleDAO.read(2);
+        Article article = this.articleDAO.find(2);
         this.enchereDAO.find(article);
         System.out.println("Trouver les encheres avec son article: " + this.enchereDAO.find(article));
     }
@@ -185,5 +184,5 @@ public class TestCategorie {
     void findAllTest() {
         this.enchereDAO.findAll();
         System.out.println("Trouver toutes les encheres: " + this.enchereDAO.findAll());
-    }
+    }*/
 }

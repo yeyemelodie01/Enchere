@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{layout/layout :: frag-layout(
+                                        title=~{:: title},
+                                        nav=~{:: header},
+                                        content=~{:: main},
+                                        resource=~{})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle vente</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
+                </div>
+            </div>
+            <div class="navbar-end">
+                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
+                    </div>
+                </div>
+                <div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
+                    </div>
+                </div>
+                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container is-flex is-flex-direction-column is-justify-content-center">
+        <h1 class="title is-2 has-text-centered">Nouvelle vente</h1>
+
+        <form th:action="@{/encheres/addArticle}" method="post">
+            <div class="field mb-5">
+                <label class="label" for="nameArticle">Article :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="nameArticle" name="articleName" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="description">Description :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="description" name="description" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="categories">Categorie :</label>
+                <div class="control">
+                    <div class="select">
+                        <select id="categories" name="categorie">
+                            <option th:each="categorie : ${categories}" th:text="${categorie.getLibelle()}" th:value="${categorie.getNoCategorie()}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="miseaprix">Mise à prix :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="miseaprix" name="miseaprix" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="startDate">Début de l'enchère :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="startDate" name="startdate" type="date">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="endDate">Fin de l'enchère :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="endDate" name="endDate" type="date">
+                </div>
+            </div>
+            <fieldset>
+                <legend>Retrait</legend>
+                <input  type="hidden"
+                        name="idUser"
+                        required
+                        data-th-value="${user.getNoUtilisateur()}"/>
+
+                <div class="field">
+                    <label class="label" for="rue">Rue :</label>
+                    <div class="control">
+                        <input class="input" id="rue" name="rue" type="text" th:value="${user.getRue()}" disabled>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="codePostal">Code Postal :</label>
+                    <div class="control">
+                        <input class="input" id="codePostal" name="codepostal" type="text" th:value="${user.getCodePostal()}" disabled>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" for="ville">Ville :</label>
+                    <div class="control">
+                        <input class="input" id="ville" name="ville" th:value="${user.getVille()}" type="text" disabled>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="field is-grouped is-grouped-centered">
+                <div class="control">
+                    <button class="button has-background-link has-text-white has-text-weight-semibold" type="submit">Enregistrer</button>
+                </div>
+                <div class="control">
+                    <button class="button has-background-link has-text-white ml-3 has-text-weight-semibold" type="reset">Annuler</button>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

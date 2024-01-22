@@ -7,6 +7,7 @@ import fr.eni.projet.enchere.bo.Enchere;
 import fr.eni.projet.enchere.dal.ArticleDAO;
 
 public interface IntArticleService {
+	void create(Article article);
 	
 	List<Article> findAll();
 	

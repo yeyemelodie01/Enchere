@@ -4,6 +4,7 @@ import fr.eni.projet.enchere.bo.Utilisateur;
 import fr.eni.projet.enchere.dal.UtilisateurDAO;
 import jdk.jshell.execution.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -16,17 +17,15 @@ import fr.eni.projet.enchere.bo.Retrait;
 import fr.eni.projet.enchere.dal.RetraitDAO;
 
 @Repository
-public class RetraitDAOSQL implements RetraitDAO {	
-
-	private JdbcTemplate jdbcTemplate;
+@Profile("sql")
+public class RetraitDAOSQL implements RetraitDAO {
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
 	@Autowired
 	private UtilisateurDAO utilisateurDAO;
 
-	public RetraitDAOSQL(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
+	public RetraitDAOSQL(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		super();
-		this.jdbcTemplate = jdbcTemplate;
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 	@Override

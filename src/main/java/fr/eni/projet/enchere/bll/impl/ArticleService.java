@@ -22,6 +22,13 @@ public class ArticleService implements IntArticleService {
     }
 
     // METHODES CRUD
+
+
+    @Override
+    public void create(Article article) {
+        this.articleDAO.create(article);
+    }
+
     @Override
     public List<Article> findAll() {
         return articleDAO.findAll();

@@ -34,8 +34,9 @@ public class ENISecuriteConfig {
             // Permet à l'employe d'accéder à la liste des formateurs
             //Alternative dans le cas ou un seul role est spécifié pour un utilisateur
             // auth.requestMatchers(HttpMethod.GET,"/formateurs").hasRole("EMPLOYE", "FORMATEUR","ADMIN")
-            auth.requestMatchers(HttpMethod.GET,"/encheres/profile/*").hasRole("UTILISATEUR");
-
+            auth.requestMatchers(HttpMethod.GET,"/encheres/profile/*").hasRole("UTILISATEUR")
+                .requestMatchers(HttpMethod.GET,"/encheres/article/*").hasRole("UTILISATEUR")
+                .requestMatchers(HttpMethod.POST,"/encheres/addArticle/*").hasRole("UTILISATEUR");
                     //Permet au formateur de manipuler les détails
                     /*.requestMatchers(HttpMethod.GET,"/formateurs/detail").hasRole("FORMATEUR")
                     .requestMatchers(HttpMethod.POST,"/formateurs/detailPost").hasRole("FORMATEUR")
@@ -44,8 +45,9 @@ public class ENISecuriteConfig {
                     .requestMatchers("/formateurs/creer").hasRole("ADMIN");*/
 
             //Permet à tous le monde d'avoir accès à la page d'accueil
-            auth.requestMatchers("/encheres/*").permitAll();
-            auth.requestMatchers("/signin").permitAll();
+            auth.requestMatchers("/encheres/*").permitAll()
+                .requestMatchers("/signin").permitAll();
+
                     //Permet à tous le monde d'avoir accès aux ressources
             auth.requestMatchers("/css/*").permitAll()
                 .requestMatchers("/images/*").permitAll();
@@ -61,6 +63,7 @@ public class ENISecuriteConfig {
 
             //page afficher par défaut lors de la connexion
             form.defaultSuccessUrl("/encheres");
+            form.failureForwardUrl("/error");
         });
 
         //gestion du logout

@@ -19,6 +19,7 @@ import fr.eni.projet.enchere.bo.Utilisateur;
 import fr.eni.projet.enchere.dal.UtilisateurDAO;
 
 @Repository
+@Profile("sql")
 public class UtilisateurDAOSQL implements UtilisateurDAO {
 	private JdbcTemplate jdbcTemplate;
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
@@ -83,7 +84,7 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 
 	@Override
 	public List<Utilisateur> findAll() {
-		String sql = "SELECT no_utilisateur,pseudo, nom, prenom, email, rue, code_postal, ville FROM UTILISATEURS;";
+		String sql = "SELECT no_utilisateur,pseudo, nom, prenom, email, rue, code_postal, ville, credit, role FROM UTILISATEURS;";
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Utilisateur.class));
 	}
 

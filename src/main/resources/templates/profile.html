@@ -22,6 +22,11 @@
                         <a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
                     </div>
                 </div>
+                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                    <div class="buttons">
+                        <a  class="is-size-5" th:href="@{/encheres/article}">Nouvel Article</a>
+                    </div>
+                </div>
                 <div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
                     <div class="buttons">
                         <a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>

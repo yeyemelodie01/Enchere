@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 		data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+														nav=~{:: header},
 														content=~{:: .center-main},
 														resource=~{:: #ressource-css})
 										}">
@@ -11,6 +12,32 @@
 </th:block>
 </head>
 <body>
+	<header>
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<div class="navbar-item">
+					<a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
+				</div>
+			</div>
+			<div class="navbar-end">
+				<div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+					<div class="buttons">
+						<a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
+					</div>
+				</div>
+				<div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
+					<div class="buttons">
+						<a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
+					</div>
+				</div>
+				<div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+					<div class="buttons">
+						<a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</header>
 	<main class="center-main">
 	<div class="cadre center">
 		<h1 class="cards"  data-th-text="Erreur + ${status}"></h1>

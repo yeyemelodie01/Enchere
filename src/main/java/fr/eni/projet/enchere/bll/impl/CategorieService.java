@@ -29,7 +29,7 @@ public class CategorieService implements IntCategorieService {
 
     @Override
     public Categorie findById(Integer id) {
-        return categorieDAO.findById(id);
+        return categorieDAO.find(id);
     }
 
 }
