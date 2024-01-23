@@ -29,7 +29,8 @@ public class ENISecuriteConfig {
             //Permet à tous le monde d'avoir accès à la page d'accueil
             auth.requestMatchers("/encheres/*").permitAll()
                     .requestMatchers(HttpMethod.GET,"/encheres/article").authenticated()
-                    .requestMatchers(HttpMethod.POST, "/encheres/profile").authenticated();
+                    .requestMatchers(HttpMethod.POST, "/encheres/profile").authenticated()
+                    .requestMatchers(HttpMethod.POST, "/encheres/detailVente").authenticated();
 
 
             //Permet à tous le monde d'avoir accès aux ressources

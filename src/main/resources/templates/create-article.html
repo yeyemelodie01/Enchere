@@ -57,7 +57,7 @@
                 <input  type="hidden"
                         name="idUser"
                         required
-                        data-th-value="${user.getNoUtilisateur()}"/>
+                        data-th-value="${#ctx.session.currentUser.noUtilisateur}"/>
 
                 <div class="field">
                     <label class="label" for="rue">Rue :</label>

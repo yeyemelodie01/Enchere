@@ -42,9 +42,7 @@ public class EnchereController {
     @GetMapping("/article")
     public String viewPageArticle(Model model){
         List<Categorie> categories = this.intCategorieService.findAll();
-        Utilisateur utilisateur = this.intUtilisateurService.findById(1);
         model.addAttribute("categories", categories);
-        model.addAttribute("user", utilisateur);
         return "create-article";
     }
     @PostMapping("/addArticle")
@@ -55,7 +53,7 @@ public class EnchereController {
             @RequestParam(name = "miseaprix") Integer miseaprix,
             @RequestParam(name = "startdate") LocalDate startdate,
             @RequestParam(name = "endDate") LocalDate endDate,
-            @RequestParam(name = "idUser") Integer idUser, Model model
+            @RequestParam(name = "idUser") Integer idUser
     ){
         Utilisateur utilisateur = this.intUtilisateurService.findById(idUser);
         Categorie categorie = this.intCategorieService.findById(idCategorie);
@@ -64,5 +62,11 @@ public class EnchereController {
         this.intArticleService.create(article);
         return "redirect:/encheres";
     }
+
+    @GetMapping("/detailVente")
+    public String saleDetail () {
+        return "detail-vente";
+    }
+
 }
 

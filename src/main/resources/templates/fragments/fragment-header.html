@@ -9,12 +9,17 @@
         <div class="navbar-end">
             <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
                 <div class="buttons">
-                    <a  class="is-size-5" th:href="@{/encheres/profile(id=${#ctx.session.currentUser.noUtilisateur})}">Mon profil</a>
+                    <a class="is-size-5" th:href="@{/encheres/detailVente}">Enchères</a>
                 </div>
             </div>
             <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
                 <div class="buttons">
                     <a class="is-size-5" th:href="@{/encheres/article}">Vendre un article</a>
+                </div>
+            </div>
+            <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
+                <div class="buttons">
+                    <a  class="is-size-5" th:href="@{/encheres/profile(id=${#ctx.session.currentUser.noUtilisateur})}">Mon profil</a>
                 </div>
             </div>
             <!--Affiche le lien connexion si l'utilisateur n'est pas connecté -->

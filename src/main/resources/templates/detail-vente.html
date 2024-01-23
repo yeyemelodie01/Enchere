@@ -9,6 +9,67 @@
 <body>
     <main>
         <h1 class="title is-2 has-text-centered">Detail vente</h1>
+        <form>
+            <div class="field mb-5">
+                <label class="label" for="nameArticle"></label>
+                <div class="control">
+                    <input class="input" id="nameArticle" name="articleName" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="description">Description :</label>
+                <div class="control">
+                    <input class="input" id="description" name="description" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="categories">Categorie :</label>
+                <div class="control">
+                    <input class="input" id="categories" name="description" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="meilleurprix">Meilleur offre :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="meilleurprix" name="meilleurprix" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="miseaprix">Mise à prix :</label>
+                <div class="control has-icons-left">
+                    <input class="input" id="miseaprix" name="miseaprix" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="endDate">Fin de l'enchère :</label>
+                <div class="control">
+                    <input class="input" id="endDate" name="endDate" type="date">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="startDate">Retrait :</label>
+                <div class="control">
+                    <input class="input" id="startDate" name="startdate" type="date">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="vendeur">Vendeur :</label>
+                <div class="control">
+                    <input class="input" id="vendeur" name="vendeur" type="date">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="proposition">Ma proposition :</label>
+                <div class="control">
+                    <input class="input" id="proposition" name="proposition" type="number" step="1" required>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button class="button has-background-link has-text-white has-text-weight-semibold" type="submit">Enchérir</button>
+                </div>
+            </div>
+        </form>
     </main>
 </body>
 </html>
