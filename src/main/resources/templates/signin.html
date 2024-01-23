@@ -1,102 +1,94 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      lang="fr"
-      data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
-                                                                        nav=~{:: header},
-                                                                        content=~{:: main},
-                                                                        resource=~{:: #ressource-css})
-                                                                        }">
+<html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+														content=~{:: main},
+														resource=~{})}">
 <head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>S'inscrire</title>
-
-    <th:block id="ressource-css">
-        <link rel="stylesheet" data-th-href="@{/css/style.css}">
-    </th:block>
 </head>
 <body>
-    <header>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <div class="navbar-item">
-                    <a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
+<main class="is-flex is-flex-direction-column is-justify-content-center">
+    <h1 class="title is-4 has-text-centered">S'inscrire</h1>
+        <form class="registration-form" data-th-action="@{/signin}" data-th-object="${utilisateur}" method="post">
+            <div class="field">
+                <label class="label" for="username"> Pseudo: </label>
+                <div class="control">
+                    <input class="input" id="username" name="pseudo" type="text" required
+                           placeholder="Votre pseudonyme" data-th-field="*{pseudo}" autofocus>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
-                    </div>
+            <div class="field">
+                <label class="label" for="lastname"> Nom: </label>
+                <div class="control">
+                    <input class="input" id="lastname" name="lastname" type="text" required
+                           placeholder="Votre nom" data-th-field="*{nom}">
                 </div>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <div class="container">
-            <h1 class="title is-2 has-text-centered">Inscription</h1>
-            <form class="registration-form" data-th-action="@{/signin}" data-th-object="${utilisateur}" method="post">
-                <ul>
-                    <li>
-                        <label for="pseudo"> Pseudo: </label>
-                        <input type="text" id="pseudo" name="pseudo" required placeholder="Votre pseudo" data-th-field="*{pseudo}">
-                    </li>
-                    <li>
-                        <label for="lastName"> Nom: </label>
-                        <input type="text" id="lastName" name="lastName" required placeholder="Votre nom" data-th-field="*{nom}">
-                    </li>
-                    <li>
-                        <label for="firstName"> Prénom: </label>
-                        <input type="text" id="firstName" name="firstName" required placeholder="Votre prénom" data-th-field="*{prenom}">
-                    </li>
-                    <li>
-                        <label for="email"> Email: </label>
-                        <input type="email" id="email" name="email" required placeholder="Votre email user@mail.com" data-th-field="*{email}">
-                    </li>
-                    <li>
-                        <label for="phoneNumber"> Numéro de tél.: </label>
-                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Votre numéro de téléphone" data-th-field="*{telephone}">
-                    </li>
-                    <li>
-                        <label for="libelleRue"> Libellé rue: </label>
-                        <input type="text" id="libelleRue" name="libelleRue" data-th-field="*{rue}">
-                    </li>
-                    <li>
-                        <label for="codePostal"> Code postal: </label>
-                        <input type="text" id="codePostal" name="codePostal" data-th-field="*{codePostal}">
-                    </li>
-                    <li>
-                        <label for="ville"> Ville: </label>
-                        <input type="text" id="ville" name="ville" data-th-field="*{ville}">
-                    </li>
-                    <li>
-                        <label for="password"> Saisir un mot de passe: </label>
-                        <input type="password" id="password" name="password" required data-th-field="*{motDePasse}">
-                    </li>
-                    <li>
-                        <label for="passwordConfirm"> Confirmer le mot de passe: </label>
-                        <input type="password" id="passwordConfirm" name="passwordConfirm" required>
-                    </li>
-                    <li>
-                        <div class="button-area">
-                            <button type="submit">S'inscrire</button>
-                            <button type="reset">Annuler</button>
-                        </div>
-                    </li>
-                </ul>
-            </form>
-        </div>
-    </main>
+            <div class="field">
+                <label class="label" for="firstname"> Prénom:</label>
+                <div class="control">
+                    <input class="input" id="firstname" name="firstname" type="text" required
+                           placeholder="Votre prénom" data-th-field="*{prenom}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="email"> Email: </label>
+                <div class="control">
+                    <input class="input" id="email" name="email" type="email" required
+                           placeholder="user@mail.com" data-th-field="*{email}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="telephone"> Téléphone:</label>
+                <div class="control">
+                    <input class="input" id="telephone" name="telephone" type="text" required
+                           placeholder="Votre numéro de téléphone" data-th-field="*{telephone}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="address"> Adresse: </label>
+                <div class="control">
+                    <input class="input" id="address" name="address" type="text" required
+                           placeholder="Votre adresse" data-th-field="*{rue}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="postalCode"> Code postal: </label>
+                <div class="control">
+                    <input class="input" id="postalCode" name="postalCode" type="text" required
+                           placeholder="Votre code postal" data-th-field="*{codePostal}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="city"> Ville: </label>
+                <div class="control">
+                    <input class="input" id="city" name="city" type="text" required placeholder="Votre ville"
+                           data-th-field="*{ville}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="password"> Mot de passe: </label>
+                <div class="control">
+                    <input class="input" id="password" name="password" type="password" required
+                           placeholder="************" data-th-field="*{motDePasse}">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="passwordConfirm"> Confirmation du mot de passe: </label>
+                <div class="control">
+                    <input class="input" id="passwordConfirm" name="passwordConfirm" type="password" required
+                           placeholder="************">
+                </div>
+            </div>
+            <div class="is-grouped is-flex is-justify-content-space-evenly">
+                <p class="control">
+                    <button class="button has-background-link has-text-white has-text-weight-semibold" type="submit"> S'inscrire</button>
+                </p>
+                <p class="control">
+                    <button class="button has-background-link has-text-white has-text-weight-semibold" type="reset">Annuler</button>
+                </p>
+            </div>
+        </form>
+    </div>
+</main>
 </body>
 </html>

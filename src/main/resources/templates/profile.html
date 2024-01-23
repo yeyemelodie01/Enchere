@@ -1,47 +1,64 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{layout/layout :: frag-layout(
-                                        title=~{:: title},
-                                        nav=~{:: header},
-                                        content=~{:: .center-main},
-                                        resource=~{})}">
+<html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+														content=~{:: main},
+														resource=~{:: #ressource-css})}">
 <head>
-    <meta charset="UTF-8">
-    <title>Profil</title>
+    <title>Mon profil</title>
 </head>
+
 <body>
-    <header>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <div class="navbar-item">
-                    <a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
+    <main>
+        <h1 class="title is-2 has-text-centered">Mon profil</h1>
+        <form class="registration-form" data-th-action="@{/encheres/profile}" method="post">
+                <label class="label" for="pseudo"> Pseudo: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="text" id="pseudo" name="pseudo" th:value="${#ctx.session.currentUser.pseudo}" required disabled>
+                </div>
+
+            <div class="field">
+                <label class="label" for="lastName" > Nom: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="text" id="lastName" name="lastName" th:value="${#ctx.session.currentUser.nom}" required disabled>
+                </div>
+
+            </div>
+            <div class="field">
+                <label class="label" for="firstName"> Prénom: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="text" id="firstName" name="firstName" th:value="${#ctx.session.currentUser.prenom}" required disabled>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a  class="is-size-5" th:href="@{/encheres/article}">Nouvel Article</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
-                    </div>
+            <div class="field">
+                <label class="label" for="email"> Email: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="email" id="email" name="email" th:value="${#ctx.session.currentUser.email}" required disabled>
                 </div>
             </div>
-        </nav>
-    </header>
-    <main class="center-main">
-        <h1 class="title is-2 has-text-centered">Bienvenue sur le profil</h1>
+            <div class="field">
+                <label class="label" for="phoneNumber"> Téléphone: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="tel" id="phoneNumber" name="phoneNumber" th:value="${#ctx.session.currentUser.telephone}" required disabled>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="libelleRue">Rue: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="text" id="libelleRue" name="libelleRue" th:value="${#ctx.session.currentUser.rue}" required disabled>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="codePostal"> Code postal: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="text" id="codePostal" name="codePostal" th:value="${#ctx.session.currentUser.codePostal}" required disabled>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label" for="ville"> Ville: </label>
+                <div class="control mb-2">
+                    <input class="input is-info" type="text" id="ville" name="ville" th:value="${#ctx.session.currentUser.ville}" required disabled>
+                </div>
+            </div>
+        </form>
     </main>
 </body>
 </html>

@@ -23,7 +23,11 @@ import java.util.List;
 @Repository
 @Profile("sql")
 public class EnchereDAOSQL implements EnchereDAO {
+
+    @Autowired
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -32,10 +36,6 @@ public class EnchereDAOSQL implements EnchereDAO {
     @Autowired
     ArticleDAO articleDAO;
 
-    public EnchereDAOSQL(NamedParameterJdbcTemplate namedParameterJdbcTemplate, JdbcTemplate jdbcTemplate) {
-        this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     @Override
     public void add(Article article) {
@@ -71,12 +71,13 @@ public class EnchereDAOSQL implements EnchereDAO {
             Enchere enchere = new Enchere();
             enchere.setDateEnchere(LocalDateTime.parse(resultSet.getString("date_enchere"), dateTimeFormatter));
             enchere.setMontantEnchere(resultSet.getInt("montant_enchere"));
-            /* Charger l'article */
+
+            /* Charger l'id de l'article */
             Article articleEnchere = new Article();
             articleEnchere.setNoArticle(resultSet.getInt("no_article"));
             enchere.setArticle(articleEnchere);
 
-            // Charger l'utilisateur
+            /* Charger l'id de l'utilisateur */
             Utilisateur utilisateur = new Utilisateur();
             utilisateur.setNoUtilisateur(resultSet.getInt("no_utilisateur"));
             enchere.setUtilisateur(utilisateur);

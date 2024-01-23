@@ -9,6 +9,8 @@ public interface UtilisateurDAO {
 	void create(Utilisateur utilisateur);
 	
 	Utilisateur find(Integer id);
+
+	Utilisateur findByPseudo(String pseudo);
 	
 	void update(Utilisateur utilisateur);
 	

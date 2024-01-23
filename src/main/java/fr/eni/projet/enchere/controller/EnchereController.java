@@ -29,10 +29,7 @@ public class EnchereController {
     }
 
     @GetMapping
-    public String Index(Model model) {
-        List<Utilisateur> utilisateurList = this.intUtilisateurService.findAll();
-        model.addAttribute("users", utilisateurList);
-        System.out.println(utilisateurList);
+    public String Index() {
         return "index";
     }
 

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{layout/layout :: frag-layout(
                                         title=~{:: title},
-                                        nav=~{:: header},
                                         content=~{:: main},
                                         resource=~{})}">
 <head>
@@ -9,32 +8,6 @@
     <title>Nouvelle vente</title>
 </head>
 <body>
-    <header>
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <div class="navbar-item">
-                    <a th:href="@{/encheres}" class="is-size-4 has-text-weight-bold">ENI-Encheres</a>
-                </div>
-            </div>
-            <div class="navbar-end">
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a  class="is-size-5" th:each="user : ${users}" th:href="@{/encheres/profile(id=${user.noUtilisateur})}">Profil</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${!#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a th:href="@{/login}" class="is-size-5">Connexion - S'inscrire</a>
-                    </div>
-                </div>
-                <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
-                    <div class="buttons">
-                        <a th:href="@{/logout}" class="is-size-5">Déconnexion</a>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
     <main class="container is-flex is-flex-direction-column is-justify-content-center">
         <h1 class="title is-2 has-text-centered">Nouvelle vente</h1>
 
@@ -69,13 +42,13 @@
             </div>
             <div class="field">
                 <label class="label" for="startDate">Début de l'enchère :</label>
-                <div class="control has-icons-left">
+                <div class="control">
                     <input class="input" id="startDate" name="startdate" type="date">
                 </div>
             </div>
             <div class="field">
                 <label class="label" for="endDate">Fin de l'enchère :</label>
-                <div class="control has-icons-left">
+                <div class="control">
                     <input class="input" id="endDate" name="endDate" type="date">
                 </div>
             </div>
@@ -89,19 +62,19 @@
                 <div class="field">
                     <label class="label" for="rue">Rue :</label>
                     <div class="control">
-                        <input class="input" id="rue" name="rue" type="text" th:value="${user.getRue()}" disabled>
+                        <input class="input" id="rue" name="rue" type="text" th:value="${#ctx.session.currentUser.rue}" disabled>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label" for="codePostal">Code Postal :</label>
                     <div class="control">
-                        <input class="input" id="codePostal" name="codepostal" type="text" th:value="${user.getCodePostal()}" disabled>
+                        <input class="input" id="codePostal" name="codepostal" type="text" th:value="${#ctx.session.currentUser.codePostal}" disabled>
                     </div>
                 </div>
                 <div class="field">
                     <label class="label" for="ville">Ville :</label>
                     <div class="control">
-                        <input class="input" id="ville" name="ville" th:value="${user.getVille()}" type="text" disabled>
+                        <input class="input" id="ville" name="ville" th:value="${#ctx.session.currentUser.ville}" type="text" disabled>
                     </div>
                 </div>
             </fieldset>

@@ -11,8 +11,6 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import fr.eni.projet.enchere.bo.Utilisateur;
@@ -23,7 +21,7 @@ import fr.eni.projet.enchere.dal.UtilisateurDAO;
 public class UtilisateurDAOSQL implements UtilisateurDAO {
 	private JdbcTemplate jdbcTemplate;
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	
+
 	public UtilisateurDAOSQL(JdbcTemplate jdbcTemplate, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
 		super();
 		this.jdbcTemplate = jdbcTemplate;
@@ -32,25 +30,24 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 
 	@Override
 	public void create(Utilisateur utilisateur) {
-		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		// Récupérer le mot de passe non crypté
-		String motDePasse = utilisateur.getMotDePasse();
-
-		// Crypter le mot de passe avec BCryptPasswordEncoder
-		String motDePasseCrypte = passwordEncoder.encode(motDePasse);
-
-		// Mettre à jour l'objet Utilisateur avec le mot de passe crypté
-		utilisateur.setMotDePasse("{bcrypt}" + motDePasseCrypte);
-
 		GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
 		String sql = "INSERT INTO UTILISATEURS(pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, role)"
 				+ " VALUES (:pseudo, :nom, :prenom, :email, :telephone, :rue, :codePostal, :ville, :motDePasse, 200, 'UTILISATEUR');";
-		
-		BeanPropertySqlParameterSource namedParameters = new BeanPropertySqlParameterSource(utilisateur);
+
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("pseudo", utilisateur.getPseudo())
+						.addValue("nom", utilisateur.getNom())
+						.addValue("prenom", utilisateur.getPrenom())
+						.addValue("email", utilisateur.getEmail())
+						.addValue("telephone", utilisateur.getTelephone())
+						.addValue("rue", utilisateur.getRue())
+						.addValue("codePostal", utilisateur.getCodePostal())
+						.addValue("ville", utilisateur.getVille())
+						.addValue("motDePasse", utilisateur.getMotDePasse());
 
 		namedParameterJdbcTemplate.update(sql, namedParameters, keyHolder);
-		
+
 		if (keyHolder.getKey() != null)
 			utilisateur.setNoUtilisateur(keyHolder.getKey().intValue());
 	}
@@ -61,15 +58,25 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 		namedParameters.addValue("noUtilisateur", id);
-		
+
 		Utilisateur utilisateur = null;
 		try {
-			utilisateur = namedParameterJdbcTemplate.queryForObject(sql, namedParameters, 
+			utilisateur = namedParameterJdbcTemplate.queryForObject(sql, namedParameters,
 					new BeanPropertyRowMapper<>(Utilisateur.class));
 		} catch (EmptyResultDataAccessException e) {
 			utilisateur = null;
 		}
-		
+
+		return utilisateur;
+	}
+
+	@Override
+	public Utilisateur findByPseudo(String pseudo) {
+		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
+		namedParameters.addValue("pseudo", pseudo);
+
+		Utilisateur utilisateur = namedParameterJdbcTemplate.queryForObject("SELECT * FROM UTILISATEURS WHERE pseudo = :pseudo",namedParameters, new BeanPropertyRowMapper<>(Utilisateur.class));
+
 		return utilisateur;
 	}
 
@@ -94,7 +101,7 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();
 		namedParameters.addValue("id", noUtilisateur);
-		
+
 		namedParameterJdbcTemplate.update(sql, namedParameters);
 	}
 

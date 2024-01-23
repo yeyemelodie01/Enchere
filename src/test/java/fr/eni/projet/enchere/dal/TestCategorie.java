@@ -67,18 +67,26 @@ public class TestCategorie {
         assertNotNull(utilisateur.getTelephone());
     }*/
 
-    @Test
+    /*@Test
     @Transactional
     void findTest() {
         utilisateurDAO.findAll();
         System.out.println(utilisateurDAO.findAll());
-    }
+    }*/
 
     /*@Test
     @Transactional
     void updateTest() {
         Utilisateur u = new Utilisateur("Ginko", "Sakata", "Gintoki", "yorozuya@edo.jp", "555777", "Unerue", "95200", "Edo", "SilverSoul", 500, "UTILISATEUR");
         utilisateurDAO.update(u);
+    }*/
+
+    /*@Test
+    @Transactional
+    void findByPseudoTest() {
+        Utilisateur utilisateur = this.utilisateurDAO.findByPseudo("toto");
+        this.utilisateurDAO.findByPseudo("toto");
+        System.out.println("findUtilisaateurByPseudo: " + utilisateur);
     }*/
 
 

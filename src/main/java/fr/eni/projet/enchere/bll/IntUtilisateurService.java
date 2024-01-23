@@ -10,6 +10,8 @@ public interface IntUtilisateurService {
 	
     Utilisateur findById(Integer id);
 
+    Utilisateur findByPseudo(String pseudo);
+
     void create(Utilisateur utilisateur);
 
     void update(Utilisateur utilisateur);
