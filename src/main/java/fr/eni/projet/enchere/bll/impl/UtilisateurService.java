@@ -33,7 +33,7 @@ public class UtilisateurService implements IntUtilisateurService {
 
 	@Override
 	public Utilisateur findById(Integer id) {
-		return this.utilisateurDAO.find(id);
+		return this.utilisateurDAO.findById(id);
 	}
 
 	@Override

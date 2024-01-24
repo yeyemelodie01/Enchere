@@ -26,11 +26,17 @@ public class SigninController {
     }
 
     @PostMapping
-    public String registerNewUser(@ModelAttribute("utilisateur") Utilisateur utilisateur, Model model){
-        this.intUtilisateurService.create(utilisateur);
-        model.addAttribute("utilisateur", utilisateur);
-        System.out.println(utilisateur);
-        return "redirect:/encheres";
+    public String registerNewUser(
+            @RequestParam(name = "passwordConfirm") String passwordConfirm,
+            @ModelAttribute("utilisateur") Utilisateur utilisateur, Model model){
 
+        if (passwordConfirm.equals(utilisateur.getMotDePasse())){
+            this.intUtilisateurService.create(utilisateur);
+            model.addAttribute("utilisateur", utilisateur);
+            return "redirect:/encheres";
+        } else {
+            System.out.println("Erreur: Les mots de passe ne correspondent pas");
+            return "redirect:/signin";
+        }
     }
 }

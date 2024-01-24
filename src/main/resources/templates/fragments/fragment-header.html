@@ -1,25 +1,30 @@
-<header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header">
+<header xmlns:th="http://www.thymeleaf.org" th:fragment="frag-header" class="mb-5">
     <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <div class="navbar-item">
-                <a th:href="@{/encheres}"><img alt="logo" src="/images/logo.png" width="158px" height="59px"></a>
-            </div>
+        <div class="navbar-brand m-4">
+            <a th:href="@{/encheres}"><img alt="logo" src="/images/logo.png" width="176" height="59"></a>
         </div>
-        <!-- Accès au profil de l'utilisateur connecté -->
         <div class="navbar-end">
+            <!-- Affichage des points de l'utilisateur -->
             <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
                 <div class="buttons">
-                    <a class="is-size-5" th:href="@{/encheres/detailVente}">Enchères</a>
+                    <img src="/images/chip.png" alt="icone-credit">
+                    <p class="is-size-5" th:text="'Mon solde: ' + ${#ctx.session.currentUser.credit}"></p>
                 </div>
             </div>
+<!--            <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">-->
+<!--                <div class="buttons">-->
+<!--                    <a class="is-size-5" >Enchères</a>-->
+<!--                </div>-->
+<!--            </div>-->
             <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
                 <div class="buttons">
                     <a class="is-size-5" th:href="@{/encheres/article}">Vendre un article</a>
                 </div>
             </div>
+            <!-- Accès au profil de l'utilisateur connecté -->
             <div class="navbar-item" th:if="${#authorization.expression('isAuthenticated()')}">
                 <div class="buttons">
-                    <a  class="is-size-5" th:href="@{/encheres/profile(id=${#ctx.session.currentUser.noUtilisateur})}">Mon profil</a>
+                    <a class="is-size-5" th:href="@{/encheres/profile(id=${#ctx.session.currentUser.noUtilisateur})}">Mon profil</a>
                 </div>
             </div>
             <!--Affiche le lien connexion si l'utilisateur n'est pas connecté -->

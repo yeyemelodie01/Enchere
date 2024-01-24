@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="fr" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
+<html xmlns:th="http://www.thymeleaf.org" lang="fr" th:replace="~{layout/layout :: frag-layout(title=~{:: title},
 														content=~{:: main},
 														resource=~{})}">
 <head>
@@ -7,9 +7,9 @@
     <title>Detail Vente</title>
 </head>
 <body>
-    <main>
+    <main class="container is-flex is-flex-direction-column is-justify-content-center mb-5">
         <h1 class="title is-2 has-text-centered">Detail vente</h1>
-        <form>
+        <form class="registration-form">
             <div class="field mb-5">
                 <label class="label" for="nameArticle"></label>
                 <div class="control">
@@ -47,15 +47,15 @@
                 </div>
             </div>
             <div class="field">
-                <label class="label" for="startDate">Retrait :</label>
+                <label class="label" for="adresse">Retrait :</label>
                 <div class="control">
-                    <input class="input" id="startDate" name="startdate" type="date">
+                    <input class="input" id="adresse" name="adresse" type="text">
                 </div>
             </div>
             <div class="field">
                 <label class="label" for="vendeur">Vendeur :</label>
                 <div class="control">
-                    <input class="input" id="vendeur" name="vendeur" type="date">
+                    <input class="input" id="vendeur" name="vendeur" type="text">
                 </div>
             </div>
             <div class="field">

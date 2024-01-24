@@ -32,7 +32,7 @@ public class RetraitDAOSQL implements RetraitDAO {
 	public void addLieuRetrait(Article article) {
 		String sql = "INSERT INTO RETRAITS (no_Article, rue, code_postal, ville) VALUES (:noArticle, :rue, :codePostal, :ville);";
 
-		Utilisateur utilisateur = this.utilisateurDAO.find(article.getUtilisateur().getNoUtilisateur());
+		Utilisateur utilisateur = this.utilisateurDAO.findById(article.getUtilisateur().getNoUtilisateur());
 		System.out.println("findUser: " + utilisateur);
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource()
 				.addValue("noArticle", article.getNoArticle())

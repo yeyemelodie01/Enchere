@@ -10,20 +10,19 @@
 </head>
 <body>
 	<main class="center-main">
-	<div class="cadre center">
-		<h1 class="cards"  data-th-text="Erreur + ${status}"></h1>
-		<form>
-			<ul class="flex-outer cards">
-				<li data-th-switch="${status}">
-					<label data-th-case="403">Vous n'êtes pas autorisé à accéder à cette page.</label>
-					<label data-th-case="404">Cette page n'existe pas.</label>
-					<label data-th-case="500">Le serveur n'est pas joignable.</label>
-					<label data-th-case="*">Oops ! Quelque chose s'est mal passé, veuillez retourner à l'acceuil.</label>
-				</li>
-			</ul>
-		</form>
-		<a data-th-href="@{/encheres}">Retour à l'acceuil</a>
-	</div>
-		
+		<div class="cadre center">
+			<h1 class="cards"  data-th-text="Erreur + ${status}"></h1>
+			<form>
+				<ul class="flex-outer cards">
+					<li data-th-switch="${status}">
+						<label data-th-case="403">Vous n'êtes pas autorisé à accéder à cette page.</label>
+						<label data-th-case="404">Cette page n'existe pas.</label>
+						<label data-th-case="500">Le serveur n'est pas joignable.</label>
+						<label data-th-case="*">Oops ! Quelque chose s'est mal passé, veuillez retourner à l'acceuil.</label>
+					</li>
+				</ul>
+			</form>
+			<a data-th-href="@{/encheres}">Retour à l'acceuil</a>
+		</div>
 	</main>	
 </body>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" data-th-replace="~{layout/layout :: frag-layout(title=~{:: title},
 														content=~{:: main},
-														resource=~{:: #ressource-css})}">
+														resource=~{})}">
 <head>
     <title>Mon profil</title>
 </head>
@@ -9,7 +9,7 @@
 <body>
     <main class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center mb-5">
         <h1 class="title is-2 has-text-centered">Mon profil</h1>
-        <form class="profile-form" th:action="@{/encheres/profile/update}" method="post">
+        <form class="profile-form" data-th-action="@{/encheres/profile}" method="post">
             <div class="field is-horizontal">
                 <div class="field-label is-normal">
                     <label class="label" for="pseudo"> Pseudo: </label>
@@ -107,13 +107,8 @@
                     </div>
                 </div>
             </div>
-            <div class="is-grouped is-flex div-profile-button">
-                <div class="control">
-                    <Button class="button has-background-link has-text-white ml-3 has-text-weight-semibold" type="submit">Modifier mes infos</Button>
-                </div>
-                <div class="control">
-                    <a class="button ml-3 is-danger has-text-weight-semibold is-family-sans-serif" data-th-href="@{/encheres/profile/delete(id=${#ctx.session.currentUser.noUtilisateur})}">Supprimer mon compte</a>
-                </div>
+            <div class="control">
+                <a data-th-href="@{/encheres/profile/update(id=${#ctx.session.currentUser.noUtilisateur})}" class="button has-background-link has-text-white ml-3 has-text-weight-semibold">Modifier mes infos</a>
             </div>
         </form>
     </main>

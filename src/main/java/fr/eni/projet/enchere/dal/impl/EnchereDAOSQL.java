@@ -41,7 +41,7 @@ public class EnchereDAOSQL implements EnchereDAO {
     public void add(Article article) {
         String sql = "INSERT INTO ENCHERES (no_utilisateur, no_article, date_enchere, montant_enchere) " +
                 "VALUES (:utilisateur, :noArticle, :dateDebutEncheres, :miseAPrix);";
-        Utilisateur utilisateur = this.utilisateurDAO.find(article.getUtilisateur().getNoUtilisateur());
+        Utilisateur utilisateur = this.utilisateurDAO.findById(article.getUtilisateur().getNoUtilisateur());
         Article findArticle = this.articleDAO.find(article.getNoArticle());
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource()
@@ -63,8 +63,6 @@ public class EnchereDAOSQL implements EnchereDAO {
 
         MapSqlParameterSource namedParameters = new MapSqlParameterSource();
         namedParameters.addValue("noArticle", article.getNoArticle());
-        System.out.println("on est dans l'enchère");
-        System.out.println("article trouver: " + this.articleDAO.find(article.getNoArticle()));
 
         return namedParameterJdbcTemplate.queryForObject(sql, namedParameters, (resultSet, rowNum) -> {
             DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");

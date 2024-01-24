@@ -8,77 +8,142 @@
     <title>Nouvelle vente</title>
 </head>
 <body>
-    <main class="container is-flex is-flex-direction-column is-justify-content-center">
+    <main class="container is-flex is-flex-direction-column is-justify-content-center mb-5">
         <h1 class="title is-2 has-text-centered">Nouvelle vente</h1>
-
-        <form th:action="@{/encheres/addArticle}" method="post">
-            <div class="field mb-5">
-                <label class="label" for="nameArticle">Article :</label>
-                <div class="control has-icons-left">
-                    <input class="input" id="nameArticle" name="articleName" type="text">
+        <form class="create-article-form" th:action="@{/encheres/addArticle}" method="post">
+            <input  type="hidden"
+                    name="idUser"
+                    required
+                    data-th-value="${#ctx.session.currentUser.noUtilisateur}"/>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="nameArticle">Article :</label>
                 </div>
-            </div>
-            <div class="field">
-                <label class="label" for="description">Description :</label>
-                <div class="control has-icons-left">
-                    <input class="input" id="description" name="description" type="text">
-                </div>
-            </div>
-            <div class="field">
-                <label class="label" for="categories">Categorie :</label>
-                <div class="control">
-                    <div class="select">
-                        <select id="categories" name="categorie">
-                            <option th:each="categorie : ${categories}" th:text="${categorie.getLibelle()}" th:value="${categorie.getNoCategorie()}"></option>
-                        </select>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control has-icons-left">
+                            <input class="input" id="nameArticle" name="articleName" type="text">
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="miseaprix">Mise à prix :</label>
-                <div class="control has-icons-left">
-                    <input class="input" id="miseaprix" name="miseaprix" type="text">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="description">Description :</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control has-icons-left">
+                            <input class="input" id="description" name="description" type="text">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="startDate">Début de l'enchère :</label>
-                <div class="control">
-                    <input class="input" id="startDate" name="startdate" type="date">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="categories">Categorie :</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <div class="select">
+                                <select id="categories" name="categorie">
+                                    <option th:each="categorie : ${categories}" th:text="${categorie.getLibelle()}" th:value="${categorie.getNoCategorie()}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="endDate">Fin de l'enchère :</label>
-                <div class="control">
-                    <input class="input" id="endDate" name="endDate" type="date">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="miseaprix">Mise à prix :</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control has-icons-left">
+                            <input class="input" id="miseaprix" name="miseaprix" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="startDate">Début de l'enchère :</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="startDate" name="startdate" type="date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="endDate">Fin de l'enchère :</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="endDate" name="endDate" type="date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="endDate">Lieu de retrait :</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="endDate" name="endDate" type="date">
+                        </div>
+                    </div>
                 </div>
             </div>
             <fieldset>
                 <legend>Retrait</legend>
-                <input  type="hidden"
-                        name="idUser"
-                        required
-                        data-th-value="${#ctx.session.currentUser.noUtilisateur}"/>
 
-                <div class="field">
-                    <label class="label" for="rue">Rue :</label>
-                    <div class="control">
-                        <input class="input" id="rue" name="rue" type="text" th:value="${#ctx.session.currentUser.rue}" disabled>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="rue">Rue :</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="is-narrow">
+                            <div class="control">
+                                <input class="input" id="rue" name="rue" type="text" th:value="${#ctx.session.currentUser.rue}" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label class="label" for="codePostal">Code Postal :</label>
-                    <div class="control">
-                        <input class="input" id="codePostal" name="codepostal" type="text" th:value="${#ctx.session.currentUser.codePostal}" disabled>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="codePostal">Code Postal :</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="is-narrow">
+                            <div class="control">
+                                <input class="input" id="codePostal" name="codepostal" type="text" th:value="${#ctx.session.currentUser.codePostal}" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label class="label" for="ville">Ville :</label>
-                    <div class="control">
-                        <input class="input" id="ville" name="ville" th:value="${#ctx.session.currentUser.ville}" type="text" disabled>
+                <div class="field is-horizontal">
+                    <div class="field-label is-normal">
+                        <label class="label" for="ville">Ville :</label>
+                    </div>
+                    <div class="field-body">
+                        <div class="is-narrow">
+                            <div class="control">
+                                <input class="input" id="ville" name="ville" th:value="${#ctx.session.currentUser.ville}" type="text" disabled>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </fieldset>
-            <div class="field is-grouped is-grouped-centered">
+            <div class="field is-grouped div-create-article-button">
                 <div class="control">
                     <button class="button has-background-link has-text-white has-text-weight-semibold" type="submit">Enregistrer</button>
                 </div>

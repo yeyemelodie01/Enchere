@@ -53,7 +53,7 @@ public class UtilisateurDAOSQL implements UtilisateurDAO {
 	}
 
 	@Override
-	public Utilisateur find(Integer id) {
+	public Utilisateur findById(Integer id) {
 		String sql = "SELECT * FROM UTILISATEURS WHERE no_utilisateur = :noUtilisateur";
 
 		MapSqlParameterSource namedParameters = new MapSqlParameterSource();

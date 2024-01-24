@@ -103,14 +103,14 @@ public class TestCategorie {
         this.articleDAO.create(article);
         assertNotNull(article.getCategorieArticle());
     }*/
-   /*  @Test
+    @Test
     @Transactional
     void findTest() {
-        this.articleDAO.read(2);
-        System.out.println("Trouver l'article avec son id: " + this.articleDAO.read(2));
+        this.articleDAO.find(2);
+        System.out.println("Trouver l'article avec son id: " + this.articleDAO.find(2).getMiseAPrix());
     }
 
-   @Test
+  /*  @Test
     @Transactional
     void findAllTest() {
         this.articleDAO.findAll();

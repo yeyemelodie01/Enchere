@@ -6,9 +6,9 @@
     <title>Connexion - Inscription</title>
 </head>
 <body>
-	<main class="is-flex is-flex-direction-column is-justify-content-center">
-		<h1  class="title is-2 has-text-centered">Se connecter</h1>
-		<form th:action="@{/login}" method="post">
+	<main class="is-flex is-flex-direction-column is-justify-content-center mb-5">
+		<h1 class="title is-2 has-text-centered">Se connecter</h1>
+		<form th:action="@{/login}" method="post" class="my-0 mx-auto">
 			<p th:if="${loginError}" class="error">Erreur utilisateur et/ou du mot de passe</p>
 			<div class="field mb-5">
 				<label class="label" for="username">Identifiant :</label>
@@ -33,7 +33,7 @@
 					<button class="button has-background-link has-text-white has-text-weight-semibold" type="submit">Se connecter</button>
 				</div>
 				<div class="control">
-					<a data-th-href="@{/signin}" class="button has-background-link has-text-white ml-3 has-text-weight-semibold">Créer un compte</a>
+					<a data-th-href="@{/signin}" class="button has-background-link has-text-white ml-3 has-text-weight-semibold is-family-sans-serif">Créer un compte</a>
 				</div>
 			</div>
 		</form>

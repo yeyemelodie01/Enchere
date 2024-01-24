@@ -6,89 +6,138 @@
     <title>S'inscrire</title>
 </head>
 <body>
-<main class="is-flex is-flex-direction-column is-justify-content-center">
-    <h1 class="title is-4 has-text-centered">S'inscrire</h1>
+    <main class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center mb-5">
+        <h1 class="title is-2 has-text-centered">S'inscrire</h1>
         <form class="registration-form" data-th-action="@{/signin}" data-th-object="${utilisateur}" method="post">
-            <div class="field">
-                <label class="label" for="username"> Pseudo: </label>
-                <div class="control">
-                    <input class="input" id="username" name="pseudo" type="text" required
-                           placeholder="Votre pseudonyme" data-th-field="*{pseudo}" autofocus>
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="username"> Pseudo: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="username" name="pseudo" type="text" required placeholder="Votre pseudonyme" data-th-field="*{pseudo}" autofocus>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="lastname"> Nom: </label>
-                <div class="control">
-                    <input class="input" id="lastname" name="lastname" type="text" required
-                           placeholder="Votre nom" data-th-field="*{nom}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="lastname"> Nom: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="lastname" name="lastname" type="text" required placeholder="Votre nom" data-th-field="*{nom}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="firstname"> Prénom:</label>
-                <div class="control">
-                    <input class="input" id="firstname" name="firstname" type="text" required
-                           placeholder="Votre prénom" data-th-field="*{prenom}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="firstname"> Prénom:</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="firstname" name="firstname" type="text" required placeholder="Votre prénom" data-th-field="*{prenom}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="email"> Email: </label>
-                <div class="control">
-                    <input class="input" id="email" name="email" type="email" required
-                           placeholder="user@mail.com" data-th-field="*{email}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="email"> Email: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="email" name="email" type="email" required placeholder="user@mail.com" data-th-field="*{email}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="telephone"> Téléphone:</label>
-                <div class="control">
-                    <input class="input" id="telephone" name="telephone" type="text" required
-                           placeholder="Votre numéro de téléphone" data-th-field="*{telephone}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="telephone"> Téléphone:</label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="telephone" name="telephone" type="text" required placeholder="Votre numéro de téléphone" data-th-field="*{telephone}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="address"> Adresse: </label>
-                <div class="control">
-                    <input class="input" id="address" name="address" type="text" required
-                           placeholder="Votre adresse" data-th-field="*{rue}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="address"> Adresse: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="address" name="address" type="text" required placeholder="Votre adresse" data-th-field="*{rue}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="postalCode"> Code postal: </label>
-                <div class="control">
-                    <input class="input" id="postalCode" name="postalCode" type="text" required
-                           placeholder="Votre code postal" data-th-field="*{codePostal}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="postalCode"> Code postal: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="postalCode" name="postalCode" type="text" required placeholder="Votre code postal" data-th-field="*{codePostal}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="city"> Ville: </label>
-                <div class="control">
-                    <input class="input" id="city" name="city" type="text" required placeholder="Votre ville"
-                           data-th-field="*{ville}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="city"> Ville: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="city" name="city" type="text" required placeholder="Votre ville" data-th-field="*{ville}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="password"> Mot de passe: </label>
-                <div class="control">
-                    <input class="input" id="password" name="password" type="password" required
-                           placeholder="************" data-th-field="*{motDePasse}">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="password"> Mot de passe: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="password" name="password" type="password" required placeholder="************" data-th-field="*{motDePasse}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="field">
-                <label class="label" for="passwordConfirm"> Confirmation du mot de passe: </label>
-                <div class="control">
-                    <input class="input" id="passwordConfirm" name="passwordConfirm" type="password" required
-                           placeholder="************">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="passwordConfirm"> Confirmation du mot de passe: </label>
+                </div>
+                <div class="field-body">
+                    <div class="is-narrow">
+                        <div class="control">
+                            <input class="input" id="passwordConfirm" name="passwordConfirm" type="password" required placeholder="************">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="is-grouped is-flex is-justify-content-space-evenly">
+            <div class="is-grouped is-flex div-registration-button">
                 <p class="control">
                     <button class="button has-background-link has-text-white has-text-weight-semibold" type="submit"> S'inscrire</button>
                 </p>
-                <p class="control">
+                <p class="control ml-3">
                     <button class="button has-background-link has-text-white has-text-weight-semibold" type="reset">Annuler</button>
                 </p>
             </div>
         </form>
-    </div>
-</main>
+    </main>
 </body>
 </html>

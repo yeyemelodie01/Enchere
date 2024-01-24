@@ -14,7 +14,7 @@
 	font-size: 1.4em;
 }
 main {
-	margin: 10%;
+	margin: 0 auto;
 	/*margin-top: 15px;
 	margin-left: 15px;*/
 }
@@ -35,11 +35,39 @@ main {
 	border-radius: 2px;
 }
 
-form {
-	margin: auto;
-	width: 30%;
+.title-index{
+	margin-bottom: 20px;
 }
 
+.registration-form {
+	width: 87%;
+	margin-left: 46%;
+}
+
+.registration-form input{
+	width: 240px;
+}
+
+.div-registration-button{
+	margin-left: 18%;
+}
+
+.profile-form{
+	width: 48%;
+	margin-left: 19%;
+}
+
+.div-profile-button{
+	margin-left: 7%;
+}
+
+.create-article-form{
+	margin-left: 25%;
+}
+
+.div-create-article-button{
+	margin-left: 16%;
+}
 
 footer{
 	text-align: center;
